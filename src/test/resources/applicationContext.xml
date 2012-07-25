@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+     					http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<beans:bean id="securityUserService"
+		class="com.colorcc.common.security.service.impl.SecurityUserServiceImpl">
+		<beans:property name="securityUserMapper" ref="securityUserMapper" />
+	</beans:bean>
+	
+	<beans:bean id="securityRoleService"
+		class="com.colorcc.common.security.service.impl.SecurityRoleServiceImpl">
+		<beans:property name="securityRoleMapper" ref="securityRoleMapper" />
+	</beans:bean>
+	
+	<beans:bean id="userDetailsServiceImpl"
+		class="com.colorcc.common.security.service.impl.UserDetailsServiceImpl">
+		<beans:property name="securityUserService" ref="securityUserService" />
+		<beans:property name="securityRoleService" ref="securityRoleService" />
+	</beans:bean>
+</beans:beans>
